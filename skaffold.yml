@@ -1,14 +1,15 @@
 apiVersion: skaffold/v1beta4
 kind: Config
-# Enforce SKaffold to use Jib
 build:
   local:
     push: false
-# Generated artifact
   artifacts:
-    - image: lvthillo/my-app
-# Use jibMaven
+    - image: agilesolutions/springbootmq
       jibMaven: {}
+    - image: ibmcom/mq
+      context: ./mq/
+    - image: oracle/database:19.3.0-ee
+      context: ./oracle/
 # Execute deployment.yml
 deploy:
   kubectl:
