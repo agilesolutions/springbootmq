@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ch.agilesolutions.boot.model.User;
 import ch.agilesolutions.boot.repository.UserRepository;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * 
@@ -35,6 +36,7 @@ public class UserController {
 	private UserRepository repository;
 
 	@GetMapping("send")
+	@ApiOperation(value = "Send MQ message", notes = "Sending message over MQ")
 	String send() {
 		try {
 			logger.info("Sending message", kv("type", "ATL"));
@@ -48,6 +50,7 @@ public class UserController {
 	}
 
 	@GetMapping("recv")
+	@ApiOperation(value = "Read MQ message", notes = "Read message over MQ")
 	String recv() {
 		try {
 			logger.info("Reading message", kv("type", "ATL"));
@@ -57,19 +60,20 @@ public class UserController {
 			return "FAIL";
 		}
 	}
-	
+
 	// Single item
 
 	@GetMapping("/cars/{id}")
-	public ResponseEntity<User> fetchUser(@PathVariable Long id) {
-		
-		logger.info("fetching vehicle with id {}", id,  kv("type", "ATL"));
-		
+	@ApiOperation(value = "Get user from DB", notes = "Fetch user from Orcacle DB")
+	public ResponseEntity<User> fetchUser(@PathVariable Integer id) {
+
+		logger.info("fetching vehicle with id {}", id, kv("type", "ATL"));
+
 		try {
-			return  new ResponseEntity<User>(repository.findById(id).get(),HttpStatus.OK);      
+			return new ResponseEntity<User>(repository.findById(id).get(), HttpStatus.OK);
 		} catch (Exception e) {
-			logger.info("Exceptin while fetching vehicle with id {}", id,  kv("type", "SAL"));
-			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);  
+			logger.info("Exceptin while fetching vehicle with id {}", id, kv("type", "SAL"));
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
