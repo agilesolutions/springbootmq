@@ -1,54 +1,11 @@
 ---
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: jenkins
-  labels:
-    app: jenkins
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: jenkins-schedule
-  namespace: jenkins
-  labels:
-    app: jenkins
-rules:
-- apiGroups: [""]
-  resources: ["pods", "pods/exec", "pods/log", "persistentvolumeclaims", "configmaps"]
-  verbs: ["*"]
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: jenkins
-  namespace: jenkins
-  labels:
-    app: jenkins
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: jenkins-schedule
-  namespace: jenkins
-  labels:
-    app: jenkins
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: jenkins-schedule
-subjects:
-- kind: ServiceAccount
-  name: jenkins
-  namespace: jenkins
----
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: "jenkins"
-  namespace: "jenkins"
+  name: mq
+  namespace: demo
   labels:
-    chart: 'jenkins'
+    app: mq 
 spec:
   replicas: 1
   strategy:
@@ -60,66 +17,55 @@ spec:
   template:
     metadata:
       labels:
-        app: "jenkins"
+        app: demo
     spec:
-#      securityContext:
-#        runAsUser: 0
       containers:
-      - name: "jenkins"
-        image: "jenkins/jenkins:latest"
-#        image: "jenkinsci/blueocean:latest"
+      - name: demo
+        image: mq
+#        image: ibmcom/mq:latest
         securityContext:
           runAsUser: 0
           privileged: true
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 8080
+        - containerPort: 1414
+        - containerPort: 9443
         resources:
           requests:
             cpu: "200m"
             memory: "300Mi"
-#        volumeMounts:
-#          -
-#            mountPath: /var/run/docker.sock
-#            name: "dockersock"
-#            readOnly: false
         env:
           - name: PORT
-            value : "8080"
-#      volumes:
-#      - name: dockersock
-#        hostPath:
-#          path: /var/run/docker.sock
-#          type: File
+            value : "1414"
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: jenkins-svc
-  namespace: jenkins
+  name: demo-svc
+  namespace: demo
   labels:
-    app: jenkins
+    app: mq
 spec:
   type: LoadBalancer
   ports:
-  - port: 8080
-    nodePort: 30080
+  - port: 1414
+    nodePort: 30081
   selector:
-    app: jenkins
+    app: demo
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: jenkins
-  namespace: jenkins
+  name: mq
+  namespace: demo
   labels:
-    app: jenkins
+    app: mq
 spec:
   rules:
-    - host: 'jenkins'
+    - host: mq
       http:
         paths:
           - path: '/'
             backend:
-              serviceName: jenkins
+              serviceName: mq
               servicePort: http
