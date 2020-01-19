@@ -7,6 +7,7 @@ This page shows how easy you can develop and test Springboot against IBM MQ mess
 ## MQ integration
 
 * [Running Oracle DB image](https://github.com/ibm-messaging/mq-container)
+* [Oracle container registry](https://technology.amis.nl/2017/12/30/oracle-database-in-a-docker-container-from-oracle-container-registry/)
 
 ```
 docker run ‑‑env LICENSE=accept ‑‑env MQ_QMGR_NAME=QM1
