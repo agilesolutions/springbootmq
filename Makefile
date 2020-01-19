@@ -19,7 +19,7 @@ skaffold:
 # Run stack                  #
 ##############################
 cluster/run:
-	@kubectl apply -f application/all.yaml || true
+	@kubectl apply -f app/all.yaml || true
 	@kubectl apply -f mq/all.yaml || true
 #	@kubectl apply -f mysql/all.yaml || true
 
@@ -29,7 +29,7 @@ cluster/run:
 cleanup:
 	@kubectl delete -f mq/all.yaml || true
 #	@kubectl delete -f mysql/all.yaml || true
-	@kubectl delete -f application/all.yaml || true
+	@kubectl delete -f app/all.yaml || true
 	
 watch:
 	@watch kubectl get all -n demo || true
