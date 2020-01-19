@@ -41,7 +41,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: demo-svc
+  name: oracle-svc
   namespace: demo
   labels:
     app: oracle
