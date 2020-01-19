@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: demo
-        image: oracle/database:latest
+        image: oracle/database:19.3.0-ee
         securityContext:
           runAsUser: 0
           privileged: true
