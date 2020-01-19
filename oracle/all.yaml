@@ -20,7 +20,7 @@ spec:
         app: demo
     spec:
       containers:
-      - name: demo
+      - name: oracle
         image: oracle/database:19.3.0-ee
         securityContext:
           runAsUser: 0
