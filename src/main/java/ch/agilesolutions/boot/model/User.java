@@ -3,8 +3,7 @@ package ch.agilesolutions.boot.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
 
 @Entity
 public class User {
@@ -12,19 +11,15 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	private String user;
-	
+	private String name;
+
 	public User() {
 	}
-	
-	
 
-	public User(String user) {
+	public User(String name) {
 		super();
-		this.user = user;
+		this.name = name;
 	}
-
-
 
 	public long getId() {
 		return id;
@@ -34,14 +29,13 @@ public class User {
 		this.id = id;
 	}
 
-	public String getUser() {
-		return user;
+	public String getName() {
+		return name;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-		
-	
+
 }

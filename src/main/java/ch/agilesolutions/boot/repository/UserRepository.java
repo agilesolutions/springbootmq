@@ -6,7 +6,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import ch.agilesolutions.boot.model.User;
 
-
 @RepositoryRestResource
-public interface UserRepository extends CrudRepository <User, Integer> {
+public interface UserRepository extends CrudRepository <User, Long> {
 }

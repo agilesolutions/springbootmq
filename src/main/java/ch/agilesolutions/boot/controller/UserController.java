@@ -65,7 +65,7 @@ public class UserController {
 
 	@GetMapping("/cars/{id}")
 	@ApiOperation(value = "Get user from DB", notes = "Fetch user from Orcacle DB")
-	public ResponseEntity<User> fetchUser(@PathVariable Integer id) {
+	public ResponseEntity<User> fetchUser(@PathVariable Long id) {
 
 		logger.info("fetching vehicle with id {}", id, kv("type", "ATL"));
 
