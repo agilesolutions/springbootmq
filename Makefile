@@ -16,6 +16,7 @@ jdk:
 	@wget https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u232-b09/OpenJDK8U-jdk_x64_linux_hotspot_8u232b09.tar.gz
 	@tar -xf OpenJDK8U-jdk_x64_linux_hotspot_8u232b09.tar.gz
 	@export PATH=$PWD/jdk8u232-b09/bin:$PATH
+	@export JAVA_HOME=$PWD/jdk8u232-b09
 	@java -version
 
 
