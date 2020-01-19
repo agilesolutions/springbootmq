@@ -3,6 +3,7 @@ This page shows how easy you can develop and test Springboot against IBM MQ mess
 
 * Read more about [MQ JMS application development with Spring Boot](https://developer.ibm.com/tutorials/mq-jms-application-development-with-spring-boot/)
 * [Let skaffold launch your complete integration stack](https://github.com/GoogleContainerTools/skaffold/tree/master/examples/microservices)
+* [More about skaffold](https://medium.com/flant-com/skaffold-kubernetes-development-tool-2897d6903e02)
 
 ## MQ integration
 
