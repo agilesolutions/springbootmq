@@ -1,5 +1,5 @@
 FROM openjdk:latest
 WORKDIR /opt/src
-COPY target/frontend.jar /opt/src/frontend.jar
+COPY target/demo.jar /opt/src/demo.jar
 EXPOSE 8080
-CMD ["java", "-jar", "/opt/src/frontend.jar"]
+CMD ["java", "-jar", "/opt/src/demo.jar"]
