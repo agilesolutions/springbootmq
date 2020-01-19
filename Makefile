@@ -17,7 +17,7 @@ cluster/run:
 ##############################
 # Cleanup stack              #
 ##############################
-cluster/run:
+cleanup:
 	@kubectl delete -f mq/all.yaml || true
 	@kubectl delete -f oracle/all.yaml || true
 	@kubectl delete -f application/all.yaml || true
