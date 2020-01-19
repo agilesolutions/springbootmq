@@ -1,6 +1,6 @@
 # Other contants
 NAMESPACE=demo
-setup: cluster/prepare cluster/run
+setup: cluster/prepare skaffold cluster/run
 ##############################
 # kubectl work               #
 ##############################
