@@ -5,8 +5,7 @@ build:
     push: false
   artifacts:
     - image: agilesolutions/demo
-      context: ./app/
-#      jibMaven: {}
+      jibMaven: {}
 deploy:
   kubectl:
     manifests:
