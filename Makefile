@@ -23,4 +23,4 @@ cleanup:
 	@kubectl delete -f application/all.yaml || true
 	
 watch:
-	@kubectl watch all -n demo || true
+	@watch kubectl get all -n demo || true
