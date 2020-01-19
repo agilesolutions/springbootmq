@@ -21,3 +21,6 @@ cleanup:
 	@kubectl delete -f mq/all.yaml || true
 #	@kubectl delete -f oracle/all.yaml || true
 	@kubectl delete -f application/all.yaml || true
+	
+watch:
+	@kubectl watch all -n demo || true
