@@ -20,6 +20,8 @@ docker run ‑‑env LICENSE=accept ‑‑env MQ_QMGR_NAME=QM1
 
 * [Running Oracle DB image](https://github.com/oracle/docker-images/blob/master/OracleDatabase/SingleInstance/README.md)
 
+On the first startup of the container a random password will be generated for the database if not provided. You can find this password in the output line.The Oracle Database inside the container also has Oracle Enterprise Manager Express configured. To access OEM Express, start your browser [https://localhost:5500/em/](https://localhost:5500/em/)
+
 ```
 docker run --name <container name> \
 -p <host port>:1521 -p <host port>:5500 \
@@ -32,3 +34,6 @@ oracle/database:19.3.0-ee
 
 ```
 
+## Testing on kubernetes
+
+* [Katacoda](https://www.katacoda.com/courses/kubernetes/helm-package-manager)
