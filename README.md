@@ -37,3 +37,8 @@ oracle/database:19.3.0-ee
 ## Testing on kubernetes
 
 * [Katacoda](https://www.katacoda.com/courses/kubernetes/helm-package-manager)
+
+```
+git clone https://github.com/agilesolutions/springbootmq.git
+make setup
+```
