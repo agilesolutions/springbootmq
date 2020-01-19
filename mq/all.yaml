@@ -21,8 +21,7 @@ spec:
     spec:
       containers:
       - name: demo
-        image: mq
-#        image: ibmcom/mq:latest
+        image: ibmcom/mq:latest
         securityContext:
           runAsUser: 0
           privileged: true
