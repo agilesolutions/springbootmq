@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: demo
-        image: springbootmq
+        image: demo
 #        image: agilesolutions/demo:latest
         securityContext:
           runAsUser: 0
