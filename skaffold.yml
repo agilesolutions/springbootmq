@@ -7,8 +7,6 @@ build:
     - image: agilesolutions/demo
       context: ./app/
 #      jibMaven: {}
-    - image: ibmcom/mq
-      context: ./mq/
 deploy:
   kubectl:
     manifests:
