@@ -20,7 +20,7 @@ spec:
         app: demo
     spec:
       containers:
-      - name: demo
+      - name: mq
         image: ibmcom/mq:latest
         securityContext:
           runAsUser: 0

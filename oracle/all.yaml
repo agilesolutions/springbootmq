@@ -2,10 +2,10 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: oracle
+  name: mq
   namespace: demo
   labels:
-    app: oracle 
+    app: mq 
 spec:
   replicas: 1
   strategy:
@@ -40,10 +40,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: oracle-svc
+  name: mq-svc
   namespace: demo
   labels:
-    app: oracle
+    app: mq
 spec:
   type: LoadBalancer
   ports:
@@ -55,16 +55,16 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: oracle
+  name: mq
   namespace: demo
   labels:
-    app: oracle
+    app: mq
 spec:
   rules:
-    - host: oracle
+    - host: mq
       http:
         paths:
           - path: '/'
             backend:
-              serviceName: oracle
+              serviceName: mq
               servicePort: http
