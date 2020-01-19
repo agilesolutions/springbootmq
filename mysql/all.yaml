@@ -1,0 +1,66 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: oracle
+  namespace: demo
+  labels:
+    app: mysql 
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app: demo
+    spec:
+      containers:
+      - name: oracle
+        image: mysql/mysql-server:latest
+        securityContext:
+          runAsUser: 0
+          privileged: true
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 33060
+        resources:
+          requests:
+            cpu: "200m"
+            memory: "300Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-svc
+  namespace: demo
+  labels:
+    app: mysql
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 1521
+    nodePort: 30082
+  selector:
+    app: demo
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: mysql
+  namespace: demo
+  labels:
+    app: oracle
+spec:
+  rules:
+    - host: mysql
+      http:
+        paths:
+          - path: '/'
+            backend:
+              serviceName: oracle
+              servicePort: http

@@ -12,14 +12,14 @@ cluster/prepare:
 cluster/run:
 	@kubectl apply -f application/all.yaml || true
 	@kubectl apply -f mq/all.yaml || true
-#	@kubectl apply -f oracle/all.yaml || true
+	@kubectl apply -f mysql/all.yaml || true
 
 ##############################
 # Cleanup stack              #
 ##############################
 cleanup:
 	@kubectl delete -f mq/all.yaml || true
-#	@kubectl delete -f oracle/all.yaml || true
+	@kubectl delete -f mysql/all.yaml || true
 	@kubectl delete -f application/all.yaml || true
 	
 watch:
