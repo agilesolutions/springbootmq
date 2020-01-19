@@ -6,6 +6,15 @@ setup: cluster/prepare cluster/run
 ##############################
 cluster/prepare:
 	@kubectl create namespace $(NAMESPACE) || true
+
+##############################
+# install skaffold           #
+##############################
+skaffold:
+	@curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/v1.2.0/skaffold-linux-amd64
+	@chmod +x skaffold 
+	@sudo mv skaffold /usr/local/bin
+
 ##############################
 # Run stack                  #
 ##############################
