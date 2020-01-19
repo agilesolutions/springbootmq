@@ -4,14 +4,12 @@ build:
   local:
     push: false
   artifacts:
-    - image: agilesolutions/springbootmq
+    - image: agilesolutions/demo:latest
       jibMaven: {}
     - image: ibmcom/mq
       context: ./mq/
-    - image: oracle/database:19.3.0-ee
-      context: ./oracle/
-# Execute deployment.yml
 deploy:
   kubectl:
     manifests:
-      - kubernetes/deployment.yml
+      - ./app/*
+      - ./mq/*
