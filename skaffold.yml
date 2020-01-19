@@ -5,7 +5,8 @@ build:
     push: false
   artifacts:
     - image: agilesolutions/demo
-      jibMaven: {}
+      context: ./app/
+#      jibMaven: {}
     - image: ibmcom/mq
       context: ./mq/
 deploy:
