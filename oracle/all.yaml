@@ -36,6 +36,14 @@ spec:
         env:
           - name: PORT
             value : 1521
+          - name: ORACLE_SID
+            value : SB
+          - name: ORACLE_PDB
+            value : DEMO
+          - name: ORACLE_PWD
+            value : admin
+          - name: ORACLE_CHARACTERSET
+            value : utf8
 ---
 apiVersion: v1
 kind: Service
