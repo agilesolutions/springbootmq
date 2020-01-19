@@ -1,11 +1,23 @@
 # Other contants
 NAMESPACE=demo
-setup: cluster/prepare skaffold cluster/run
+setup: cluster/prepare skaffold jdk cluster/run
 ##############################
 # kubectl work               #
 ##############################
 cluster/prepare:
 	@kubectl create namespace $(NAMESPACE) || true
+
+
+
+##############################
+# install jdk                #
+##############################
+jdk:
+	@wget https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u232-b09/OpenJDK8U-jdk_x64_linux_hotspot_8u232b09.tar.gz
+	@tar -xf OpenJDK8U-jdk_x64_linux_hotspot_8u232b09.tar.gz
+	@export PATH=$PWD/jdk8u232-b09/bin:$PATH
+
+
 
 ##############################
 # install skaffold           #
